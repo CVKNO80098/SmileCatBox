@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: TestSpring
+  datasource:
+    username: root
+    password: hi58lo32
+    url: jdbc:mysql://localhost:3306/springtest
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #??????
+  type-aliases-package: org.learn.testspring.bean

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册您的账户~</title>
+    <link rel="stylesheet" href="../CSS/Input.css">
+    <script src="../JS/Flower.js"></script>
+    <style>
+        img {-webkit-user-drag: none;}
+        body {background-color: #f7e2e7;}
+        /*input {*/
+        /*    transition: all 0.3s;*/
+        /*    outline: none;*/
+        /*}*/
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        .indexBox {
+            background-color: #fff;
+            border-radius: 15px;
+            height: 600px;
+            width: 400px;
+            transition: all 0.3s;
+            box-shadow: 1px 1px 1px #767676;
+            z-index: 9;
+        }
+        .indexBox:hover {
+            box-shadow: 5px 5px 5px #767676;
+        }
+        .indexBox h3 {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            height: 80px;
+            align-content: center;
+            font-family: 楷体,serif;
+            color: #777777;
+        }
+        .indexBox form {
+            justify-content: center;
+        }
+        .index {
+            margin: auto;
+            width: 220px;
+        }
+        .errorBlock {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
+            width: 220px;
+            height: 30px;
+            color: red;
+            border: 2px solid red;
+            border-radius: 5px;
+            background-color: #ffdede;
+            text-align: center;
+            opacity: 0;
+        }
+        .leftPic1 {
+            left: 15%;
+            position: absolute;
+            width: 15%;
+        }
+        .leftPic2 {
+            right: 15%;
+            position: absolute;
+            width: 15%;
+        }
+        .back {
+            text-decoration: none;
+            height: 40px;
+            width: 150px;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #ff6666;
+            background-color: #fff;
+            border: 2px solid #ffc7c7;
+            border-radius: 5px;
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+    <script src="../JS/ClickWater.js"></script>
+
+    <a class="back" href="/login"><<返回登录界面</a>
+
+    <img class="leftPic1" src="../pic/dogAndCat1.png" alt="">
+    <img class="leftPic2" src="../pic/dogAndCat2.png" alt="">
+    
+    <div class="indexBox">
+        <div class="index">
+            <h3>注  册</h3>
+            <form style="height: 100%;" role="form" action="/register/bc" method="post">
+                <label for="nickname" title="人，总要有一个名字">昵称：<input oninput="heckInput()" type="text" id="nickname" name = "nickname"> </label> <br><br>
+
+                <label for="username" title="这是您的身份证，请收好">账号：<input oninput="heckInput()" type="text" id="username" name = "username"> </label> <br><br>
+
+                <label for="password" title="您进入的暗号，请记牢">密码：<input oninput="heckInput()" type="text" id="password" name = "password"> </label> <br><br>
+
+                <label for="birthday" title="未来的事情也许没有发生的机会，但发生过的事情不会更改">生日：<input oninput="heckInput()" type="date" id="birthday" name = "birthday"> </label> <br><br>
+
+                <input style="width: 100%;bottom: 0;" type="submit" value="提交">
+            </form>
+        </div>
+        <div class="errorBlock" th:value="${error}" th:style="${style}"></div>
+    </div>
+    <script>
+        let date = new Date();
+        year = date.getFullYear()
+        month = date.getMonth()
+        day = date.getDate()
+        if (month < 10) month = `0${month+1}` // 如果月份是个位数，在前面补0
+        if (day < 10) day = `0${day}` // 如果日是个位数，在前面补0
+        dateStr = year+'-'+month+'-'+day
+        document.querySelector("#birthday").value = dateStr;
+        console.log("您好，很荣幸能与你在"+dateStr+"相遇，如果您想参与本项目，请联系QQ：2127059845");
+    </script>
+    <script>
+        heckInput()
+        function heckInput() {
+            if (document.querySelector("#nickname").value !== "" &&
+                document.querySelector("#username").value !== "" &&
+                document.querySelector("#password").value !== "" &&
+                document.querySelector("#birthday").value !== "") {
+                document.querySelector("input[type='submit']").disabled = false
+            } else {
+                document.querySelector("input[type='submit']").disabled = true
+            }
+        }
+    </script>
+</body>
+</html>
